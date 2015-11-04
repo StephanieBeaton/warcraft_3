@@ -45,7 +45,7 @@ class Barracks
     @health_points -= attack_power
   end
 
-  def can_build_seige_engine?
+  def can_build_siege_engine?
     return false if gold < 200
     return false if lumber < 60
     return false if food < 3
@@ -54,12 +54,12 @@ class Barracks
 
   end
 
-  def build_seige_engine
-    if can_build_seige_engine?
+  def build_siege_engine
+    if can_build_siege_engine?
       @gold -= 200
       @lumber -= 60
       @food -= 3
-      SeigeEngine.new
+      SiegeEngine.new
     end
 
   end

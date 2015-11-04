@@ -13,6 +13,7 @@ class Unit
     # footman should deal 10 (AP) damage to the enemy unit
     # if unit is dead unit cant damage enemy
     return if dead?
+    return if enemy.dead?
     enemy.damage(self.attack_power)
   end
 

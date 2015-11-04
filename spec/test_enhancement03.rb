@@ -21,14 +21,16 @@ describe Unit do
   end
 
   describe "#attack!" do
-    it "which is alive can attack another unit." do
+    it "which is alive will not attack another unit that is dead." do
       @unit.damage(99)
       enemy = Unit.new(100, 3)
+      enemy.damage(100)   # kill enemy unit
       before_attack_hp = enemy.health_points
-      result = before_attack_hp - @unit.attack_power
+      # result = before_attack_hp - @unit.attack_power
       expect(@unit.dead?).to eq(false)
+      expect(enemy.dead?).to eq(true)
       @unit.attack!(enemy)
-      expect(enemy.health_points).to eq(result)
+      expect(enemy.health_points).to eq(before_attack_hp)
     end
   end
 

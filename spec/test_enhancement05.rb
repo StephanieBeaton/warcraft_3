@@ -22,12 +22,12 @@ require_relative 'spec_helper'
 #
 # Notes:
 
-# You will need to require the seige_engine.rb file in spec_helper.rb
+# You will need to require the siege_engine.rb file in spec_helper.rb
 
-describe SeigeEngine do
+describe SiegeEngine do
 
   before :each do
-    @seige_engine = SeigeEngine.new
+    @siege_engine = SiegeEngine.new
   end
 
   it "has and knows its HP (health points)" do
@@ -35,34 +35,34 @@ describe SeigeEngine do
   end
 
   it "has and knows its AP (attack power)" do
-    expect(@seige_engine.attack_power).to eq(50)
+    expect(@siege_engine.attack_power).to eq(50)
   end
 
   # ================================================================
   describe "#damage" do
-    it "should reduce the seige_engine's health_points by the attack_power specified" do
-      @seige_engine.damage(12)
-      expect(@seige_engine.health_points).to eq(388) # HP started at 400 but just got hit by 12 (see subject)
+    it "should reduce the siege_engine's health_points by the attack_power specified" do
+      @siege_engine.damage(12)
+      expect(@siege_engine.health_points).to eq(388) # HP started at 400 but just got hit by 12 (see subject)
     end
   end
 
-  # Siege Engines can attack other siege engines
+  # siege Engines can attack other siege engines
   describe "#attack!" do
-    it "should deal the appropriate (attack power based) damage to another seige engine" do
-      enemy_seige_engine = SeigeEngine.new
-      #  ???
-      expect(enemy_seige_engine).to receive(:damage).with(3)
-      @seige_engine.attack!(enemy_seige_engine)
+    it "should deal the appropriate (attack power based) damage to another siege engine" do
+      enemy_siege_engine = SiegeEngine.new
+      #  Stub out method
+      expect(enemy_siege_engine).to receive(:damage).with(@siege_engine.attack_power)
+      @siege_engine.attack!(enemy_siege_engine)
     end
   end
 
-  # the SiegeEngine does 2x the damage against the Barracks
+  # the siegeEngine does 2x the damage against the Barracks
   describe "#attack!" do
     it "should deal the appropriate (attack power based) damage to the barracks" do
-      enemy_barracks = Baracks.new
-      #  ???
-      expect(enemy_barracks).to receive(:damage).with(@seige_engine.attack_power * 2)
-      @seige_engine.attack!(enemy_baracks)
+      enemy_barracks = Barracks.new
+      #  Stub out method
+      expect(enemy_barracks).to receive(:damage).with(@siege_engine.attack_power * 2)
+      @siege_engine.attack!(enemy_barracks)
     end
   end
 
@@ -71,9 +71,9 @@ describe SeigeEngine do
   describe "#attack!" do
     it "should deal the appropriate (attack power based) damage to unit" do
       enemy_unit = Footman.new
-      #  ???
-      expect(enemy_unit).to receive(:damage).with(3)
-      @seige_engine.attack!(enemy_unit)
+      #  Stub out method
+      expect(enemy_unit).to receive(:damage).with(0)
+      @siege_engine.attack!(enemy_unit)
     end
   end
 
@@ -82,35 +82,30 @@ end
 
 describe Barracks do
 
-  describe "#build_seige_engine" do
+  describe "#build_siege_engine" do
 
     before :each do
       @barracks = Barracks.new
     end
 
-    @gold = 1000
-    @food = 80
-    @health_points = 500
-    @lumber = 500
-
     it "costs 200 gold" do
-      @barracks.build_seige_engine
+      @barracks.build_siege_engine
       expect(@barracks.gold).to eq(800) # starts at 1000
     end
 
     it "costs 60 lumber" do
-      @barracks.build_seige_engine
+      @barracks.build_siege_engine
       expect(@barracks.lumber).to eq(440) # starts at 500
     end
 
     it "costs 3 food" do
-      @barracks.build_seige_engine
+      @barracks.build_siege_engine
       expect(@barracks.food).to eq(77) # starts at 80
     end
 
-    it "produces a seige engine" do
-      seige_engine = @barracks.build_seige_engine
-      expect(seige_engine).to be_an_instance_of(SeigeEngine)
+    it "produces a siege engine" do
+      siege_engine = @barracks.build_siege_engine
+      expect(siege_engine).to be_an_instance_of(SiegeEngine)
     end
 
 
