@@ -11,6 +11,8 @@ class Unit
 
   def attack!(enemy)
     # footman should deal 10 (AP) damage to the enemy unit
+    # if unit is dead unit cant damage enemy
+    return if dead?
     enemy.damage(self.attack_power)
   end
 
@@ -19,4 +21,9 @@ class Unit
     @health_points -= attack_power
   end
 
+  def dead?
+    return false if @health_points > 0
+
+    true
+  end
 end
