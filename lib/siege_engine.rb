@@ -14,7 +14,7 @@ class SiegeEngine < Unit
   end
 
   def attack!(enemy)
-    # seige engine should deal 50 (AP) damage to the enemy
+    # siege engine should deal 50 (AP) damage to the enemy
     # if enemy is a unit cannot damage enemy
     # if enemy is a barracks then can double damage
     if enemy.class == Peasant
