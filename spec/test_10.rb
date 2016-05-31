@@ -7,7 +7,7 @@ require_relative 'spec_helper'
 
 # After making the tests pass,
 # consider what modifications you can make to the Peasant and Footman classes
-# to take advantage of this inheritence
+# to take advantage of this inheritance
 
 describe Unit do
 
